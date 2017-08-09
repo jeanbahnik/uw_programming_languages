@@ -39,4 +39,18 @@ val test9 = what_month 70 = 3
 
 val test10 = month_range (31, 34) = [1,2,2,2]
 
-val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)*)
+val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
+
+Challenge Problems:
+
+- Write functions number_in_months_challenge and dates_in_months_challenge
+that are like your solutions to problems 3 and 5 except having a month in the second argument multiple
+times has no more effect than having it once. (Hint: Remove duplicates, then use previous work.)
+
+- Write a function reasonable_date that takes a date and determines if it
+describes a real date in the common era. A “real date” has a positive year (year 0 did not exist), a
+month between 1 and 12, and a day appropriate for the month. Solutions should properly handle leap
+years. Leap years are years that are either divisible by 400 or divisible by 4 but not divisible by 100.
+(Do not worry about days possibly lost in the conversion to the Gregorian calendar in the Late 1500s.)
+
+*)
