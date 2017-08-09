@@ -4,5 +4,9 @@
 the first argument is a date that comes before the second argument. (If the two dates are the same,
 the result is false.) *)
 
-fun is_older (date1: int*int*int, date2: int*int*int) =
-  (#1 date1 < #1 date2) orelse (#2 date1 < #2 date2) orelse (#3 date1 < #3 date2)
+fun is_older (d1: int*int*int, d2: int*int*int) =
+  if #1 d1 < #1 d2 then true
+  else if #1 d1 = #1 d2 andalso #2 d1 < #2 d2 then true
+  else if #1 d1 = #1 d2 andalso #2 d1 > #2 d2 then false
+  else if #2 d2 = #2 d2 andalso #3 d1 < #3 d2 then true
+  else false
