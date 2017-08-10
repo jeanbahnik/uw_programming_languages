@@ -55,14 +55,36 @@ fun what_month (day: int) =
         1 + number_before_reaching_sum(day, days_in_month)
     end
 
-(*
-- Write a function month_range that takes two days of the year day1 and day2 and returns an int list
-[m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
-of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
+fun month_range(day1: int, day2: int) =
+    if day1 > day2 then []
+    else
+        let
+            fun iterate(from: int, to: int) =
+                if from = to
+                then (what_month(to)) :: []
+                else (what_month(from)) :: iterate(from+1, to)
+        in
+            iterate(day1, day2)
+        end
 
+(*
 - Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
 evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.
+*)
+(*val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)*)
 
+fun oldest (dates: (int*int*int) list) =
+    if null dates then NONE
+    else
+        let
+            fun iterate(date: (int*int*int), tl_dates: (int*int*int) list) =
+                if null tl_dates then SOME date
+                else iterate(date, tl tl_dates)
+        in
+            iterate(hd dates, dates)
+        end
+
+(*
 - Challenge Problem: Write functions number_in_months_challenge and dates_in_months_challenge
 that are like your solutions to problems 3 and 5 except having a month in the second argument multiple
 times has no more effect than having it once. (Hint: Remove duplicates, then use previous work.)
