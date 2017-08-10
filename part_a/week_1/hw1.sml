@@ -31,46 +31,31 @@ fun dates_in_months (dates: (int*int*int) list, months: int list) =
     else if null months then []
     else dates_in_month(dates, hd months) @ dates_in_months(dates, tl months)
 
-(*- Write a function get_nth that takes a list of strings and an int n and returns the n
-th element of the
-list where the head of the list is 1st. Do not worry about the case where the list has too few elements:
-your function may apply hd or tl to the empty list in this case, which is okay.*)
-
 fun get_nth (strings: string list,pos: int) =
     if null strings then ""
-    else
-        (*let fun iterate(i: int) =
-            if i = pos then hd strings
-            else get_nth(tl strings, i+1)
-            in
-                iterate 1
-            end*)
-        let val i = get_nth(tl strings, pos)
-        in
-            if i = pos then hd strings
-            else get_nth(tl strings, i+1)
-            in
-                iterate 1
-            end
+    else if pos = 1 then hd strings
+    else get_nth(tl strings, pos - 1)
+
+fun date_to_string(y: int, m: int, d: int) =
+    let val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    in
+        get_nth(months, m) ^ " " ^ Int.toString(d) ^ ", " ^ Int.toString(y)
+    end
+
+fun number_before_reaching_sum (sum: int, numbers: int list) =
+    if hd numbers >= sum
+    then 0
+    else 1 + number_before_reaching_sum(sum - (hd numbers), tl numbers)
+
+
+fun what_month (day: int) =
+    let
+        val days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    in
+        1 + number_before_reaching_sum(day, days_in_month)
+    end
 
 (*
-- Write a function date_to_string that takes a date and returns a string of the form January 20, 2013
-(for example). Use the operator ^ for concatenating strings and the library function Int.toString
-for converting an int to a string. For producing the month part, do not use a bunch of conditionals.
-Instead, use a list holding 12 strings and your answer to the previous problem. For consistency, put a
-comma following the day and use capitalized English month names: January, February, March, April,
-May, June, July, August, September, October, November, December.
-
-- Write a function number_before_reaching_sum that takes an int called sum, which you can assume
-is positive, and an int list, which you can assume contains all positive numbers, and returns an int.
-You should return an int n such that the first n elements of the list add to less than sum, but the first
-n + 1 elements of the list add to sum or more. Assume the entire list sums to more than the passed in
-value; it is okay for an exception to occur if this is not the case.
-
-- Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns
-what month that day is in (1 for January, 2 for February, etc.). Use a list holding 12 integers and your
-answer to the previous problem.
-
 - Write a function month_range that takes two days of the year day1 and day2 and returns an int list
 [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
 of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
