@@ -31,12 +31,29 @@ fun dates_in_months (dates: (int*int*int) list, months: int list) =
     else if null months then []
     else dates_in_month(dates, hd months) @ dates_in_months(dates, tl months)
 
-(*
-- Write a function get_nth that takes a list of strings and an int n and returns the n
+(*- Write a function get_nth that takes a list of strings and an int n and returns the n
 th element of the
 list where the head of the list is 1st. Do not worry about the case where the list has too few elements:
-your function may apply hd or tl to the empty list in this case, which is okay.
+your function may apply hd or tl to the empty list in this case, which is okay.*)
 
+fun get_nth (strings: string list,pos: int) =
+    if null strings then ""
+    else
+        (*let fun iterate(i: int) =
+            if i = pos then hd strings
+            else get_nth(tl strings, i+1)
+            in
+                iterate 1
+            end*)
+        let val i = get_nth(tl strings, pos)
+        in
+            if i = pos then hd strings
+            else get_nth(tl strings, i+1)
+            in
+                iterate 1
+            end
+
+(*
 - Write a function date_to_string that takes a date and returns a string of the form January 20, 2013
 (for example). Use the operator ^ for concatenating strings and the library function Int.toString
 for converting an int to a string. For producing the month part, do not use a bunch of conditionals.
