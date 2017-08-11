@@ -1,11 +1,6 @@
-(* int*int*int year*month*day *)
-
-(* Write a function is_older that takes two dates and evaluates to true or false. It evaluates to true if
-the first argument is a date that comes before the second argument. (If the two dates are the same,
-the result is false.) *)
-
 fun is_older (d1: int*int*int, d2: int*int*int) =
     if #1 d1 < #1 d2 then true
+    else if #1 d1 > #1 d2 then false
     else if #1 d1 = #1 d2 andalso #2 d1 < #2 d2 then true
     else if #1 d1 = #1 d2 andalso #2 d1 > #2 d2 then false
     else if #2 d2 = #2 d2 andalso #3 d1 < #3 d2 then true
@@ -37,7 +32,8 @@ fun get_nth (strings: string list,pos: int) =
     else get_nth(tl strings, pos - 1)
 
 fun date_to_string(y: int, m: int, d: int) =
-    let val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let
+        val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     in
         get_nth(months, m) ^ " " ^ Int.toString(d) ^ ", " ^ Int.toString(y)
     end
@@ -46,7 +42,6 @@ fun number_before_reaching_sum (sum: int, numbers: int list) =
     if hd numbers >= sum
     then 0
     else 1 + number_before_reaching_sum(sum - (hd numbers), tl numbers)
-
 
 fun what_month (day: int) =
     let
@@ -67,21 +62,16 @@ fun month_range(day1: int, day2: int) =
             iterate(day1, day2)
         end
 
-(*
-- Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
-evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.
-*)
-(*val test11 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)*)
-
 fun oldest (dates: (int*int*int) list) =
     if null dates then NONE
     else
         let
             fun iterate(date: (int*int*int), tl_dates: (int*int*int) list) =
                 if null tl_dates then SOME date
-                else iterate(date, tl tl_dates)
+                else if is_older(date, hd tl_dates) then iterate(date, tl tl_dates)
+                else iterate(hd tl_dates, tl tl_dates)
         in
-            iterate(hd dates, dates)
+            iterate(hd dates, tl dates)
         end
 
 (*

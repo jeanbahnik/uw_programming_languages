@@ -6,13 +6,16 @@ use "hw1.sml";
 (* All the tests should evaluate to true. For example, the REPL should say: val test1 = true : bool *)
 
 (* int*int*int year*month*day *)
+(* true if d1 is older *)
 val test1 = is_older ((1,2,3),(2,3,4)) = true
 val test2 = is_older ((2018,12,4),(2017,1,4)) = false
 val test3 = is_older ((2017,6,3),(2017,4,4)) = false
 val test4 = is_older ((2017,6,3),(2017,6,3)) = false
 val test5 = is_older ((2017,6,4),(2017,6,3)) = false
 val test6 = is_older ((2017,5,2),(2017,6,3)) = true
+val test6b = is_older ((2018,5,2),(2017,6,3)) = false
 val test7 = is_older ((2017,6,2),(2017,6,3)) = true
+val test7b = is_older ((2012,2,28),(2011,3,31)) = false
 
 val test8 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1
 
@@ -43,6 +46,10 @@ val test25 = what_month 70 = 3
 val test26 = month_range (31, 34) = [1,2,2,2]
 
 val test27 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
+val test28 = oldest([(2011,3,31),(2011,4,28),(2012,2,28)]) = SOME (2011,3,31)
+val test29 = oldest([(2011,4,28),(2012,2,28),(2011,3,31)]) = SOME (2011,3,31)
+val test30 = oldest([(2011,3,31)]) = SOME (2011,3,31)
+val test31 = oldest([]) = NONE
 
 (*
 Challenge Problems:
