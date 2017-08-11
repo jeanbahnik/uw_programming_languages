@@ -1,10 +1,14 @@
 fun is_older (d1: int*int*int, d2: int*int*int) =
-    if #1 d1 < #1 d2 then true
+    (#1 d1 < #1 d2)
+    orelse (#1 d1 = #1 d2 andalso #2 d1 < #2 d2)
+    orelse (#1 d1 = #1 d2 andalso #2 d1 = #2 d2 andalso #3 d1 < #3 d2)
+
+    (*if #1 d1 < #1 d2 then true
     else if #1 d1 > #1 d2 then false
     else if #1 d1 = #1 d2 andalso #2 d1 < #2 d2 then true
     else if #1 d1 = #1 d2 andalso #2 d1 > #2 d2 then false
     else if #2 d2 = #2 d2 andalso #3 d1 < #3 d2 then true
-    else false
+    else false*)
 
 fun number_in_month (dates: (int*int*int) list, month: int) =
     if null dates then 0
