@@ -1,4 +1,4 @@
-use "hw1.sml";
+use "hw1b.sml";
 
 (* Homework1 Simple Test *)
 (* These are basic test cases. Passing these tests does not guarantee that your code will pass the actual homework grader *)
@@ -7,7 +7,7 @@ use "hw1.sml";
 
 (* int*int*int year*month*day *)
 (* true if d1 is older *)
-val test1 = is_older ((1,2,3),(2,3,4)) = true
+(*val test1 = is_older ((1,2,3),(2,3,4)) = true
 val test2 = is_older ((2018,12,4),(2017,1,4)) = false
 val test3 = is_older ((2017,6,3),(2017,4,4)) = false
 val test4 = is_older ((2017,6,3),(2017,6,3)) = false
@@ -49,7 +49,7 @@ val test27 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
 val test28 = oldest([(2011,3,31),(2011,4,28),(2012,2,28)]) = SOME (2011,3,31)
 val test29 = oldest([(2011,4,28),(2012,2,28),(2011,3,31)]) = SOME (2011,3,31)
 val test30 = oldest([(2011,3,31)]) = SOME (2011,3,31)
-val test31 = oldest([]) = NONE
+val test31 = oldest([]) = NONE*)
 
 (*
 Challenge Problems:
