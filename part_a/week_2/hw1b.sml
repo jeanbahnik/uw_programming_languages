@@ -32,6 +32,14 @@ fun number_in_months (dates: (int*int*int) list, months: int list) =
 4. Write a function dates_in_month that takes a list of dates and a month (i.e., an int) and returns a
 list holding the dates from the argument list of dates that are in the month. The returned list should
 contain dates in the order they were originally given.
+*)
+(* val test13 = dates_in_month ([(2012,2,28),(2013,12,1),(2012,2,25)],2) = [(2012,2,28),(2012,2,25)] *)
+fun dates_in_month (dates : (int*int*int) list, month: int) =
+    if null dates then []
+    else if #2 (hd dates) = month then hd dates :: dates_in_month(tl dates, month)
+    else dates_in_month(tl dates, month)
+
+(*
 5. Write a function dates_in_months that takes a list of dates and a list of months (i.e., an int list)
 and returns a list holding the dates from the argument list of dates that are in any of the months in
 the list of months. Assume the list of months has no number repeated. Hint: Use your answer to the
