@@ -44,6 +44,15 @@ fun dates_in_month (dates : (int*int*int) list, month: int) =
 and returns a list holding the dates from the argument list of dates that are in any of the months in
 the list of months. Assume the list of months has no number repeated. Hint: Use your answer to the
 previous problem and SML’s list-append operator (@).
+*)
+
+(*val test15 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]*)
+fun dates_in_months (dates: (int*int*int) list, months: int list) =
+    if null dates then []
+    else if null months then []
+    else dates_in_month(dates, hd months) @ dates_in_months (dates, tl months)
+
+(*
 6. Write a function get_nth that takes a list of strings and an int n and returns the n
 th element of the
 list where the head of the list is 1st. Do not worry about the case where the list has too few elements:
