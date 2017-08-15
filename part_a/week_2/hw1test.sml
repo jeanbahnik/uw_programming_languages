@@ -17,9 +17,10 @@ val test6b = is_older ((2018,5,2),(2017,6,3)) = false
 val test7 = is_older ((2017,6,2),(2017,6,3)) = true
 val test7b = is_older ((2012,2,28),(2011,3,31)) = false
 
-(*
 val test8 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1
+val test8b = number_in_month ([(2012,2,28),(2013,12,1),(2014,2,12)],2) = 2
 
+(*
 val test9 = number_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = 3
 val test10 = number_in_months ([],[2,3,4]) = 0
 val test11 = number_in_months ([(2012,2,28),(2012,2,28),(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = 5
