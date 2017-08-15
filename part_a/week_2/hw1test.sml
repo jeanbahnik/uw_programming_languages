@@ -7,7 +7,7 @@ use "hw1b.sml";
 
 (* int*int*int year*month*day *)
 (* true if d1 is older *)
-(*val test1 = is_older ((1,2,3),(2,3,4)) = true
+val test1 = is_older ((1,2,3),(2,3,4)) = true
 val test2 = is_older ((2018,12,4),(2017,1,4)) = false
 val test3 = is_older ((2017,6,3),(2017,4,4)) = false
 val test4 = is_older ((2017,6,3),(2017,6,3)) = false
@@ -17,6 +17,7 @@ val test6b = is_older ((2018,5,2),(2017,6,3)) = false
 val test7 = is_older ((2017,6,2),(2017,6,3)) = true
 val test7b = is_older ((2012,2,28),(2011,3,31)) = false
 
+(*
 val test8 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1
 
 val test9 = number_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = 3
