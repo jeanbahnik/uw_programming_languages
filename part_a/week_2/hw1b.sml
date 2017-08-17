@@ -110,8 +110,28 @@ fun what_month (day: int) =
 (*
 10. Write a function month_range that takes two days of the year day1 and day2 and returns an int list
 [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
-of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.*)
+of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
+
+val test26 = month_range (31, 34) = [1,2,2,2]
+*)
+
+fun month_range(d1: int, d2: int) =
+    if d1 > d2 then []
+    else if d1 = d2 then what_month(d2) :: []
+    else what_month(d1) :: month_range(d1 + 1, d2)
 
 (*
 11. Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
-evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.*)
+evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.
+val test27 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
+*)
+
+fun oldest (dates: (int*int*int) list) =
+    if null dates then NONE
+    else
+        let
+            val o = oldest
+        in
+        end
+        if null tl dates then SOME hd dates
+    else oldest()
