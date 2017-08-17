@@ -91,8 +91,8 @@ value; it is okay for an exception to occur if this is not the case.
 
 fun number_before_reaching_sum (sum: int, nums: int list) =
     if null nums then 0
-    else if hd nums + number_before_reaching_sum(sum - hd nums, tl nums) >= sum then hd nums
-    else number_before_reaching_sum(sum - hd nums, tl nums)
+    else if hd nums >= sum then 0
+    else 1 + number_before_reaching_sum(sum - hd nums, tl nums)
 
 (*
 9. Write a function what_month that takes a day of year (i.e., an int between 1 and 365) and returns
@@ -100,11 +100,18 @@ what month that day is in (1 for January, 2 for February, etc.). Use a list hold
 answer to the previous problem.
 *)
 
-fun what_month
+fun what_month (day: int) =
+    let
+        val days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    in
+        1 + number_before_reaching_sum(day, days_in_month)
+    end
 
 (*
 10. Write a function month_range that takes two days of the year day1 and day2 and returns an int list
 [m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
-of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.
+of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2.*)
+
+(*
 11. Write a function oldest that takes a list of dates and evaluates to an (int*int*int) option. It
 evaluates to NONE if the list has no dates and SOME d if the date d is the oldest date in the list.*)

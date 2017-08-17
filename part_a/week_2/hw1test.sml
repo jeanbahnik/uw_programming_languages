@@ -41,10 +41,12 @@ val test22 = get_nth (["hi", "there", "how", "are", "you"], 5) = "you"
 val test23 = date_to_string (2013, 6, 1) = "June 1, 2013"
 
 val test24 = number_before_reaching_sum (10, [1,2,3,4,5]) = 3
+val test24b = number_before_reaching_sum (70, [31,28,31,44,55]) = 2
+val test24c = number_before_reaching_sum (10, [9,10]) = 1
 
-(*
 val test25 = what_month 70 = 3
 
+(*
 val test26 = month_range (31, 34) = [1,2,2,2]
 
 val test27 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
