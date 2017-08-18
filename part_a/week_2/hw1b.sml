@@ -60,7 +60,7 @@ your function may apply hd or tl to the empty list in this case, which is okay.
 *)
 (*val test21 = get_nth (["hi", "there", "how", "are", "you"], 2) = "there"*)
 
-fun get_nth(words: string list, n: int) =
+fun get_nth(words: string list, n: int) = (*redo*)
     if null words then ""
     else if n = 1 then hd words
     else get_nth(tl words, n - 1)
@@ -89,7 +89,7 @@ n + 1 elements of the list add to sum or more. Assume the entire list sums to mo
 value; it is okay for an exception to occur if this is not the case.
 *)
 
-fun number_before_reaching_sum (sum: int, nums: int list) =
+fun number_before_reaching_sum (sum: int, nums: int list) = (*redo*)
     if null nums then 0
     else if hd nums >= sum then 0
     else 1 + number_before_reaching_sum(sum - hd nums, tl nums)
@@ -100,7 +100,7 @@ what month that day is in (1 for January, 2 for February, etc.). Use a list hold
 answer to the previous problem.
 *)
 
-fun what_month (day: int) =
+fun what_month (day: int) = (*redo*)
     let
         val days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     in
@@ -115,7 +115,7 @@ of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day
 val test26 = month_range (31, 34) = [1,2,2,2]
 *)
 
-fun month_range(d1: int, d2: int) =
+fun month_range(d1: int, d2: int) = (*redo*)
     if d1 > d2 then []
     else if d1 = d2 then what_month(d2) :: []
     else what_month(d1) :: month_range(d1 + 1, d2)
@@ -126,12 +126,18 @@ evaluates to NONE if the list has no dates and SOME d if the date d is the oldes
 val test27 = oldest([(2012,2,28),(2011,3,31),(2011,4,28)]) = SOME (2011,3,31)
 *)
 
-fun oldest (dates: (int*int*int) list) =
+fun oldest (dates: (int*int*int) list) = (*redo*)
     if null dates then NONE
     else
         let
-            val o = oldest
+            fun f dates =
+                if null (tl dates) then hd dates
+                else let
+                    val ans = f (tl dates)
+                in
+                    if is_older(ans, hd dates) then ans
+                    else hd dates
+                end
         in
+            SOME (f dates)
         end
-        if null tl dates then SOME hd dates
-    else oldest()
