@@ -1,4 +1,4 @@
-use "hw1b.sml";
+use "hw1c.sml";
 
 (* Homework1 Simple Test *)
 (* These are basic test cases. Passing these tests does not guarantee that your code will pass the actual homework grader *)
