@@ -3,6 +3,17 @@ the first argument is a date that comes before the second argument. (If the two 
 the result is false.)
 *)
 
+fun is_older (date1 : int*int*int, date2 : int*int*int) =
+    (#1 date1 < #1 date2)
+    orelse ((#1 date1 = #1 date2) andalso (#2 date1 < #2 date2))
+    orelse ((#1 date1 = #1 date2) andalso (#2 date1 = #2 date2) andalso (#3 date1 < #3 date2))
+    orelse false
+
+
+(* 
+val test6b = is_older ((2018,5,2),(2017,6,3)) = false
+val test7b = is_older ((2012,2,28),(2011,3,31)) = false
+ *)
 
 (*
 2. Write a function number_in_month that takes a list of dates and a month (i.e., an int) and returns
@@ -10,7 +21,6 @@ how many dates in the list are in the given month.
 *)
 
 (*val test8 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1*)
-
 
 
 (*
