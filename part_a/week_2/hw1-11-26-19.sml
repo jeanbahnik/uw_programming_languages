@@ -26,7 +26,38 @@ fun dates_in_month(dates : (int * int * int) list, month: int) =
         then hd dates :: dates_in_month(tl dates, month)
         else dates_in_month(tl dates, month)
 
-fun dates_in_months(dates: (int * int * int) list, months: int list)=
+fun dates_in_months(dates : (int * int * int) list, months: int list)=
     if null months
     then []
     else dates_in_month(dates, hd months) @ dates_in_months(dates, tl months)
+
+fun get_nth(strings : string list, pos: int) =
+    if null strings
+    then ""
+    else
+        if pos = 1
+        then hd strings
+        else get_nth(tl strings, pos - 1)
+
+fun date_to_string(year : int, month : int, day : int) =
+    let val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    in get_nth(months, month) ^ " " ^ Int.toString(day) ^ ", " ^ Int.toString(year)
+    end
+
+fun number_before_reaching_sum(sum: int, numbers: int list) =
+    if sum - hd numbers <= 0
+    then 0
+    else 1 + number_before_reaching_sum(sum - hd numbers, tl numbers)
+
+fun what_month(day : int) =
+    let val days_in_month = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    in 1 + number_before_reaching_sum(day, days_in_month)
+    end
+
+(* Write a function month_range that takes two days of the year day1 and day2 and returns an int list
+[m1,m2,...,mn] where m1 is the month of day1, m2 is the month of day1+1, ..., and mn is the month
+of day day2. Note the result will have length day2 - day1 + 1 or length 0 if day1>day2. *)
+fun month_range(day1 : int, day2 : int) =
+    if day2 < day1
+    then []
+    else what_month(day1) :: month_range(day1 + 1, day2)
