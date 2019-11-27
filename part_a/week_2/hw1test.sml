@@ -7,6 +7,7 @@ use "hw1-11-26-19.sml";
 
 (* int*int*int year*month*day *)
 (* true if d1 is older *)
+
 val test1 = is_older ((1,2,3),(2,3,4)) = true
 val test2 = is_older ((2018,12,4),(2017,1,4)) = false
 val test3 = is_older ((2017,6,3),(2017,4,4)) = false
@@ -16,7 +17,6 @@ val test6 = is_older ((2017,5,2),(2017,6,3)) = true
 val test6b = is_older ((2018,5,2),(2017,6,3)) = false
 val test7 = is_older ((2017,6,2),(2017,6,3)) = true
 val test7b = is_older ((2012,2,28),(2011,3,31)) = false
-
 
 val test8 = number_in_month ([(2012,2,28),(2013,12,1)],2) = 1
 val test8b = number_in_month ([(2012,2,28),(2013,12,1),(2014,2,12)],2) = 2
@@ -29,11 +29,11 @@ val test12 = dates_in_month ([(2012,2,28),(2013,12,1)],2) = [(2012,2,28)]
 val test13 = dates_in_month ([(2012,2,28),(2013,12,1),(2012,2,25)],2) = [(2012,2,28),(2012,2,25)]
 val test14 = dates_in_month ([(2012,2,28),(2013,12,1),(2012,2,25)],5) = []
 
-(*
 val test15 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[2,3,4]) = [(2012,2,28),(2011,3,31),(2011,4,28)]
 val test16 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28)],[1]) = []
 val test17 = dates_in_months ([(2012,2,28),(2013,12,1),(2011,3,31),(2011,4,28),(2012,2,27)],[2,3,4]) = [(2012,2,28),(2012,2,27),(2011,3,31),(2011,4,28)]
 
+(*
 val test18 = get_nth ([], 2) = ""
 val test19 = get_nth (["hi"], 1) = "hi"
 val test20 = get_nth (["hi", "there"], 3) = ""
